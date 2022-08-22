@@ -1,3 +1,27 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+
+@layer base {
+  body {
+    @apply bg-[#141414] text-white !scrollbar-thin !scrollbar-track-transparent !scrollbar-thumb-red-600;
+    font-family: Helvetica, sans-serif;
+  }
+    
+  header {
+    @apply fixed top-0 z-50 flex w-full items-center justify-between px-4 py-4 transition-all duration-[.4s] lg:px-14 lg:py-[18px];
+    background-image: linear-gradient(180deg,rgba(0,0,0,.7) 10%,transparent);
+  }
+}
+
+
+@layer components {
+  .header-link {
+    @apply cursor-pointer text-sm text-[#e5e5e5] transition duration-[.4s] hover:text-[#b3b3b3];
+  }
+
+  .banner-btn {
+    @apply flex items-center gap-x-3 rounded px-5 py-1.5 text-sm font-bold transition hover:opacity-75 md:py-2.5 md:px-8 md:text-lg;
+  }
+}
