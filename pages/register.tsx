@@ -12,7 +12,7 @@ const Register = () => {
   const { register, formState: { errors } } = useForm<Inputs>();
   const router = useRouter();
 
-  const handleUpdateInput = useCallback((e: React.ChangeEvent<HTMLInputElement> | React.FormEvent<HTMLInputElement>) => {
+  const handleUpdateInput = useCallback((e: React.ChangeEvent<HTMLInputElement>) => {
     setEmailValue(e.target.value);
     console.log(emailValue)
     localStorage.setItem('email', emailValue);
@@ -41,7 +41,7 @@ const Register = () => {
             className={`w-full md:h-full rounded-sm outline-none px-3 h-12 text-black md:group-focus-within:pt-4 ${emailValue.length > 0 && 'pt-4'} ${errors.email && 'border-b-2 border-orange-500'}`}
             {...register('email', { required: true })}
             onChange={e => handleUpdateInput(e)}
-            onInputCapture={e => handleUpdateInput(e)}
+            // onInputCapture={e => handleUpdateInput(e)}
           />
           <button type='submit' onClick={() => router.push('/signup/registration')} className='w-[50%] mt-3 md:mt-0 md:h-full flex justify-center items-center rounded-sm bg-[#E50914] py-3 text-sm md:text-xl lg:text-3xl hover:bg-[#F6121D]'>
             Get Started
