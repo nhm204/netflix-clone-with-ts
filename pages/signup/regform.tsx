@@ -6,7 +6,7 @@ import useAuth from '../../hooks/useAuth';
 import { Inputs } from '../../typings';
 
 
-const regForm = () => {
+const RegForm = () => {
   const [ signup, setSignup ] = useState<boolean>(false);
   const [ emailValue, setEmailValue ] = useState<string>(() => localStorage.getItem('email') ?? '');
   const [ passwordValue, setPasswordValue ] = useState<string>('');
@@ -113,4 +113,4 @@ const regForm = () => {
   )
 }
 
-export default regForm;
+export default RegForm;
