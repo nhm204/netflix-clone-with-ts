@@ -12,7 +12,7 @@ const Register = () => {
   const { register, formState: { errors } } = useForm<Inputs>();
   const router = useRouter();
 
-  const handleUpdateInput = useCallback((e: React.ChangeEvent<HTMLInputElement>) => {
+  const handleUpdateInput = useCallback((e: React.ChangeEvent<HTMLInputElement> | React.FormEvent<HTMLInputElement>) => {
     setEmailValue(e.target.value);
     console.log(emailValue)
     localStorage.setItem('email', emailValue);
