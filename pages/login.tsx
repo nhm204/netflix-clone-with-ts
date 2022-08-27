@@ -28,9 +28,9 @@ const Login = () => {
         <title>Netflix</title>
         <link rel='icon' href='/favicon.ico' />
       </Head>
-      <Image src='https://rb.gy/fafrpf' layout='fill' className='-z-10 !hidden opacity-60 sm:!inline' objectFit='cover' />
+      <Image src='https://rb.gy/fafrpf' layout='fill' className='-z-10 !hidden opacity-60 sm:!inline' objectFit='cover' alt='background' />
       <header style={{ backgroundImage: 'linear-gradient(to bottom, rgba(0, 0, 0, 0.5) 0%, rgba(0, 0, 0, 0) 100%)' }} className='fixed top-0 left-0 right-0 h-[90px]' >
-        <img src='https://rb.gy/ulxxee' className='left-4 top-4 cursor-pointer object-contain md:left-10 md:top-6' width={160} height={160} />
+        <img src='https://rb.gy/ulxxee' className='left-4 top-4 cursor-pointer object-contain md:left-10 md:top-6' width={160} height={160} alt='logo' />
       </header>
       <form onSubmit={handleSubmit(onSubmit)} className='relative mt-24 space-y-8 rounded bg-black/75 py-14 px-6 md:mt-0 md:max-w-md md:px-16'>
         <h1 className='text-4xl font-semibold'>Sign In</h1>

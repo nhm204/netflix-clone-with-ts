@@ -5,7 +5,7 @@ import useAuth from '../hooks/useAuth';
 import { BsCheck2 } from "react-icons/bs";
 
 
-const signup = () => {
+const SignUp = () => {
   const { logout } = useAuth();
   const router = useRouter();
 
@@ -16,11 +16,11 @@ const signup = () => {
         <link rel='icon' href='/favicon.ico' />
       </Head>
       <header className='fixed top-0 left-0 right-0 h-[90px] bg-none border-b py-[3%] lg:py-[3%]' >
-        <img src='https://rb.gy/ulxxee' className='w-[120px] cursor-pointer object-contain md:left-10 md:top-6 md:w-[160px]' />
+        <img src='https://rb.gy/ulxxee' className='w-[120px] cursor-pointer object-contain md:left-10 md:top-6 md:w-[160px]' alt='logo' />
         <button className='text-[#333] font-semibold md:text-lg' onClick={logout}>Sign Out</button>
       </header>
       <div className='flex flex-col justify-center items-center text-[#333] w-[50%] lg:w-[25%]'>
-        <img src='https://rb.gy/dld41a' className='w-[50px]' />
+        <img src='https://rb.gy/dld41a' className='w-[50px]' alt='illustration' />
         <span className='text-xs mt-6 mb-2'>STEP <b>1</b> OF <b>3</b></span>
         <h1 className='text-center text-3xl font-bold'>Choose your plan.</h1>
         <ul className='my-8'>
@@ -43,4 +43,4 @@ const signup = () => {
   )
 }
 
-export default signup;
+export default SignUp;
