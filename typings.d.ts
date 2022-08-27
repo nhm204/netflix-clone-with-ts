@@ -31,3 +31,8 @@ export interface Element {
     | 'Trailer'
     | 'Teaser'
 }
+
+export interface Inputs {
+  email: string
+  password: string
+}

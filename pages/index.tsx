@@ -1,12 +1,15 @@
 import Head from 'next/head';
 import { Banner, Header, MovieList } from '../components';
+import useAuth from '../hooks/useAuth';
 import { Movie } from '../typings';
 import requests from '../utils/requests';
+
 
 interface Props {
   netflixOriginals: Movie[]
   trendingNow: Movie[]
   topRated: Movie[]
+  misteryMovies: Movie[]
   actionMovies: Movie[]
   comedyMovies: Movie[]
   horrorMovies: Movie[]
@@ -15,7 +18,10 @@ interface Props {
 }
 
 const Home: React.FC<Props> = (props) => {
-  const { netflixOriginals, actionMovies, comedyMovies, documentaries, horrorMovies, romanceMovies, topRated, trendingNow } = props;
+  const { netflixOriginals, misteryMovies, actionMovies, comedyMovies, documentaries, horrorMovies, romanceMovies, topRated, trendingNow } = props;
+  const { loading } = useAuth();
+
+  if (loading) return null;
 
   return (
     <div className='relative h-screen bg-gradient-to-b from-gray-900/10 to-[#010511] lg:h-[140vh] w-full'>
@@ -25,14 +31,15 @@ const Home: React.FC<Props> = (props) => {
       </Head>
       <Header />
 
-      <main className='relative pl-4 pb-24 lg:space-y-24 lg:pl-14'>
+      <main className='relativepb-24 lg:space-y-24'>
         <Banner netflixOriginals={netflixOriginals} />
-        <section className="md:space-y-24">
+        <section className="md:space-y-12">
           <MovieList title="Trending Now" movies={trendingNow} />
           <MovieList title="Top Rated" movies={topRated} />
           <MovieList title="Action Thrillers" movies={actionMovies} />
           {/* My List */}
           <MovieList title="Comedies" movies={comedyMovies} />
+          <MovieList title="Mistery Movies" movies={misteryMovies} />
           <MovieList title="Scary Movies" movies={horrorMovies} />
           <MovieList title="Romance Movies" movies={romanceMovies} />
           <MovieList title="Documentaries" movies={documentaries} />
@@ -54,6 +61,7 @@ export const getServerSideProps = async () => {
     topRated,
     actionMovies,
     comedyMovies,
+    misteryMovies,
     horrorMovies,
     romanceMovies,
     documentaries,
@@ -63,6 +71,7 @@ export const getServerSideProps = async () => {
     fetch(requests.fetchTopRated).then(res => res.json()),
     fetch(requests.fetchActionMovies).then(res => res.json()),
     fetch(requests.fetchComedyMovies).then(res => res.json()),
+    fetch(requests.fetchMisteryMovies).then(res => res.json()),
     fetch(requests.fetchHorrorMovies).then(res => res.json()),
     fetch(requests.fetchRomanceMovies).then(res => res.json()),
     fetch(requests.fetchDocumentaries).then(res => res.json()),
@@ -75,6 +84,7 @@ export const getServerSideProps = async () => {
       topRated: topRated.results,
       actionMovies: actionMovies.results,
       comedyMovies: comedyMovies.results,
+      misteryMovies: misteryMovies.results,
       horrorMovies: horrorMovies.results,
       romanceMovies: romanceMovies.results,
       documentaries: documentaries.results

@@ -14,20 +14,18 @@ const Banner = ({ netflixOriginals }: Props) => {
 
   useEffect(() => setMovie(netflixOriginals[Math.floor(Math.random() * netflixOriginals.length)]), [netflixOriginals]);
 
-  console.log(movie)
-
 
   return (
-    <div className='flex flex-col space-y-2 py-16 md:space-y-4 lg:h-[75vh] lg:justify-end lg:pb-0'>
+    <div className='flex flex-col space-y-2 pl-[4%] py-16 md:space-y-4 lg:h-[75vh] lg:justify-end lg:pb-0'>
       <div className='absolute top-0 left-0 -z-10 h-[95vh] w-full'>
         <Image src={`${baseUrl}${movie?.backdrop_path || movie?.poster_path}`} layout='fill' objectFit="cover"/>
       </div>
       <div className=''>
-        <h1 className='text-2xl font-bold md:text-4xl lg:text-7xl'>
-            {movie?.title || movie?.name || movie?.original_name}
+        <h1 className='max-w-xs md:max-w-lg lg:max-w-2xl text-2xl font-bold md:text-4xl lg:text-7xl'>
+          {movie?.title || movie?.name || movie?.original_name}
         </h1>
         <p className='max-w-xs text-xs text-shadow-md md:max-w-lg md:text-lg lg:max-w-2xl lg:text-lg lg:my-5'>
-            {movie?.overview}
+          {movie?.overview}
         </p>
         <div className='flex space-x-3'>
           <button className='banner-btn bg-white text-black'>
