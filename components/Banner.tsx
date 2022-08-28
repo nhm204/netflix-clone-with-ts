@@ -1,5 +1,5 @@
 import Image from 'next/image';
-import React, { useEffect, useState } from 'react';
+import React, { useCallback, useEffect, useRef, useState } from 'react';
 import { baseUrl } from '../constants/movie';
 import { Element, Movie } from '../typings';
 import { FaPlay } from 'react-icons/fa';
@@ -8,6 +8,8 @@ import { BsArrowClockwise } from "react-icons/bs";
 import { useRecoilState } from 'recoil';
 import { modalState, movieState } from '../atoms/modalAtom';
 import ReactPlayer from 'react-player';
+import { findDOMNode } from 'react-dom';
+import screenfull from 'screenfull';
 
 interface Props {
   netflixOriginals: Movie[]
@@ -18,8 +20,9 @@ const Banner = ({ netflixOriginals }: Props) => {
   const [ showModal, setShowModal ] = useRecoilState(modalState);
   const [ currentMovie, setCurrentMovie ] = useRecoilState(movieState);
   const [ trailer, setTrailer ] = useState<string>('');
-  const [ muted, setMuted ] = useState<boolean>(true);
-  const [ loop, setLoop ] = useState<boolean>(false);
+  const [ muted, setMuted ] = useState<boolean>(false);
+  const [ isPlay, setIsPlay ] = useState<boolean>(true);
+  const [ showReplayButton, setShowReplayButton ] = useState<boolean>(false);
 
   useEffect(() => {
     setMovie(netflixOriginals[Math.floor(Math.random() * netflixOriginals.length)]);
@@ -29,13 +32,17 @@ const Banner = ({ netflixOriginals }: Props) => {
       ).then((response) => response.json());
 
       if (data?.videos) {
-        const index = data.videos.results.findIndex((element: Element) => element.type === 'Trailer' || 'Teaser' || 'Clip' || 'Bloopers' || 'Featurette' || 'Behind the Scenes');
+        const index = data.videos.results.findIndex((element: Element) => element.type === 'Trailer' || 'Teaser' || 'Bloopers' || 'Featurette' || 'Behind the Scenes');
         setTrailer(data.videos?.results[index]?.key);
       }
     }
     fetchMovie();
-  }, [netflixOriginals]);
-
+  }, [movie]);
+ 
+  const handleReplay = useCallback(() => {
+    setIsPlay(true);
+    setShowReplayButton(false);
+  }, [setIsPlay, setShowReplayButton]);
 
   return (
     <div className='flex flex-col space-y-2 pl-[4%] py-16 md:space-y-4 lg:h-[75vh] lg:justify-end lg:pb-0'>
@@ -46,9 +53,9 @@ const Banner = ({ netflixOriginals }: Props) => {
             width='100%'
             height='100%'
             style={{ position: 'absolute', top: '0', left: '0', background: 'linear-gradient(0deg, rgb(24, 24, 24), transparent 50%)' }}
-            playing
+            playing={isPlay && true}
             muted={muted}
-            loop={loop}
+            onEnded={() => setShowReplayButton(true)}
             poster={`https://image.tmdb.org/t/p/w500${movie?.poster_path || movie?.backdrop_path}`}
           /> :
           <Image src={`${baseUrl}${movie?.backdrop_path || movie?.poster_path}`} layout='fill' objectFit="cover" alt='banner' /> 
@@ -81,9 +88,11 @@ const Banner = ({ netflixOriginals }: Props) => {
         </div>
         { trailer && (
           <div className='flex space-x-2 z-10 mr-8'>
-            <button className='modal-btn z-10' onClick={() => setLoop(!loop)}>
-              <BsArrowClockwise className='h-6 w-6' />
-            </button>
+            { showReplayButton && (
+              <button className='modal-btn z-10' onClick={handleReplay}>
+                <BsArrowClockwise className='h-6 w-6' />
+              </button>
+            )}
             <button className='modal-btn z-10' onClick={() => setMuted(!muted)}>
               { muted ? <VolumeOffIcon className='h-6 w-6' /> : <VolumeUpIcon className='h-6 w-6' /> }
             </button>

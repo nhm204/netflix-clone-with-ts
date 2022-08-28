@@ -112,6 +112,7 @@ const Modal = () => {
               height='100%'
               style={{ position: 'absolute', top: '0', left: '0', background: 'linear-gradient(0deg, rgb(24, 24, 24), transparent 50%)' }}
               playing
+              loop
               muted={muted}
               poster={`https://image.tmdb.org/t/p/w500${movie?.poster_path || movie?.backdrop_path}`}
             /> :      

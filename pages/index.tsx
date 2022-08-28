@@ -60,7 +60,7 @@ const Home: React.FC<Props> = (props) => {
       <Header />
 
       <main className='relative pb-24 lg:space-y-24'>
-        <Banner netflixOriginals={animation} />
+        <Banner netflixOriginals={netflixOriginals} />
         <section className="md:space-y-12">
           { trendingNow && <MovieList title="Trending Now" movies={trendingNow} /> }
           { topRated && <MovieList title="Top Rated" movies={topRated} /> }
