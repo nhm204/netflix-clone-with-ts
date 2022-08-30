@@ -13,6 +13,22 @@ module.exports = {
         'gradient-to-b':
           'linear-gradient(to bottom,rgba(20,20,20,0) 0,rgba(20,20,20,.15) 15%,rgba(20,20,20,.35) 29%,rgba(20,20,20,.58) 44%,#141414 68%,#141414 100%);',
       },
+      keyframes: {
+        fadeIn: {
+          '0%': { opacity: 0 },
+          '50%': { opacity: 50 },
+          '100%': { opacity: 100 },
+        },
+        fadeOut: {
+          '0%': { opacity: 100 },
+          '50%': { opacity: 50 },
+          '100%': { opacity: 0 },
+        }
+      },
+      animation: {
+        fadeIn: 'fadeIn 3s ease-in',
+        fadeOut: 'fadeOut 3s ease-out forwards',
+      }
     },
   },
   plugins: [

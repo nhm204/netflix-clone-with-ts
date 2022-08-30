@@ -1,4 +1,3 @@
-import MuiModal from '@mui/material/Modal';
 import { useRecoilState } from 'recoil';
 import Image from 'next/image';
 import { baseUrl } from '../constants/movie';
@@ -14,7 +13,7 @@ import { FaPlay } from 'react-icons/fa';
 import toast, { Toaster } from 'react-hot-toast';
 
 
-const Modal = () => {
+const HoverModal = () => {
   const [ showModal, setShowModal ] = useRecoilState(modalState);
   const [ movie, setMovie ] = useRecoilState(movieState);
   const [ trailer, setTrailer ] = useState<string>('');
@@ -55,13 +54,6 @@ const Modal = () => {
   }, [movie]);
 
 
-  const handleClose = useCallback(() => {
-    setShowModal(false);
-    setMovie(null);
-    toast.dismiss();
-  }, [setShowModal, setMovie]);
-
-
   useEffect(() => {
     if (user) {
       return onSnapshot(
@@ -91,52 +83,46 @@ const Modal = () => {
   
 
   return (
-    <MuiModal
-      open={showModal}
-      onClose={handleClose}
-      className='fixed !top-7 left-0 right-0 mb-4 z-50 mx-auto w-full max-w-4xl overflow-hidden overflow-y-scroll rounded-md scrollbar-hide'
+    <div className='absolute !-top-4 -left-8 right-8 mb-4 z-50 mx-auto w-full max-w-3xl overflow-hidden overflow-y-scroll rounded-md scrollbar-hide'
+      onMouseLeave={() => {
+        setShowModal(false);
+      }}
     >
       <>
         <Toaster position='bottom-center' />
-        <button className='modal-btn absolute right-5 top-5 border-none !z-40 h-9 w-9 bg-[#181818] hover:bg-[#181818]' onClick={handleClose}>
-          <XIcon className='h-6 w-6' />
-        </button>
-
-        <div style={{position: 'absolute', top: '0', left: '0', right: '0', height:'72.25%', background: 'linear-gradient(0deg, rgb(24, 24, 24), transparent 50%)', zIndex: '1'}}></div>
         <div className='relative pt-[56.25%]'>
           { trailer ?
             <ReactPlayer
               url={`https://www.youtube.com/watch?v=${trailer}`}
               width='100%'
               height='100%'
-              style={{ position: 'absolute', top: '0', left: '0', background: 'linear-gradient(0deg, rgb(24, 24, 24), transparent 50%)' }}
+              style={{ position: 'absolute', top: '0', left: '0' }}
               playing
               loop
               muted={muted}
               poster={`https://image.tmdb.org/t/p/w500${movie?.poster_path || movie?.backdrop_path}`}
             /> :      
-            <Image src={`${baseUrl}${movie?.backdrop_path || movie?.poster_path}`} style={{background: 'linear-gradient(0deg, rgb(24, 24, 24), transparent 50%)'}} className='absolute top-0 left-0 object-cover' layout='fill' alt='' />
+            <Image src={`${baseUrl}${movie?.backdrop_path || movie?.poster_path}`} className='absolute top-0 left-0 object-cover' layout='fill' alt='' />
           }
-          <h1 className='absolute bottom-28 px-12 text-lg md:text-6xl text-white text-shadow-md font-bold w-[75%] z-10'>{movie?.name || movie?.title || movie?.original_name}</h1>
           <div className='absolute bottom-10 flex w-full items-center justify-between px-12'>
-            <div className='flex space-x-2 z-10'>
-              <button className='flex items-center gap-x-2 rounded bg-white px-8 text-lg font-bold text-black transition hover:bg-[#e6e6e6]'>
-                <FaPlay className='h-6 w-6 text-black' />
-                Play
-              </button>
-              <button className='modal-btn' onClick={handleList}>
-                { addedToList ? <CheckIcon className='h-6 w-6' /> : <PlusIcon className='h-6 w-6' /> }
-              </button>
-              <button className='modal-btn'>
-                <ThumbUpIcon className='h-6 w-6' />
-              </button>
-            </div>
+            <h1 className='absolute left-2 bottom-1 text-sm text-white text-shadow-md font-bold w-[75%] z-10'>{movie?.name || movie?.title || movie?.original_name}</h1>
             <button className='modal-btn z-10' onClick={() => setMuted(!muted)}>
               { muted ? <VolumeOffIcon className='h-6 w-6' /> : <VolumeUpIcon className='h-6 w-6' /> }
             </button>
           </div>
         </div>
         <div className='flex space-x-16 rounded-b-md bg-[#181818] px-12 py-8'>
+          <div className='flex space-x-2 z-10'>
+            <button className='modal-btn bg-white transition hover:bg-[#e6e6e6] border-white hover:border-[#e6e6e6]'>
+              <FaPlay className='h-5 w-4 text-black' />
+            </button>
+            <button className='modal-btn' onClick={handleList}>
+              { addedToList ? <CheckIcon className='h-6 w-6' /> : <PlusIcon className='h-6 w-6' /> }
+            </button>
+            <button className='modal-btn'>
+              <ThumbUpIcon className='h-6 w-6' />
+            </button>
+          </div>
           <div className='space-y-6 text-lg'>
             <div className='flex items-center space-x-2 text-base'>
               <p className='font-semibold text-green-400'>
@@ -150,29 +136,18 @@ const Modal = () => {
               </div>
             </div>
             <div className='flex flex-col gap-x-10 gap-y-4 font-light md:flex-row'>
-              <p className='w-[70%] sm:text-sm lg:text-base'>{movie?.overview}</p>
               <div className='flex flex-col space-y-3 text-sm'>
                 <div>
                   <span className='text-[gray]'>Genres:</span>{' '}
-                  { genres.map(genre => genre.name).join(', ') }
-                </div>
-                <div>
-                  <span className='text-[gray]'>Original language:</span>
-                  {' '}
-                  { movie?.original_language }
-                </div>
-                <div>
-                  <span className='text-[gray]'>Total votes:</span>
-                  {' '}
-                  { movie?.vote_count }
+                  { genres.map(genre => genre.name).join('• ') }
                 </div>
               </div>
             </div>
           </div>
         </div>
       </>
-    </MuiModal>
+    </div>
   )
 };
 
-export default Modal;
+export default HoverModal;
