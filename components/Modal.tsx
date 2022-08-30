@@ -94,6 +94,7 @@ const Modal = () => {
     <MuiModal
       open={showModal}
       onClose={handleClose}
+      onMouseLeave={handleClose}
       className='fixed !top-7 left-0 right-0 mb-4 z-50 mx-auto w-full max-w-4xl overflow-hidden overflow-y-scroll rounded-md scrollbar-hide'
     >
       <>
@@ -102,7 +103,7 @@ const Modal = () => {
           <XIcon className='h-6 w-6' />
         </button>
 
-        <div style={{position: 'absolute', top: '0', left: '0', right: '0', height:'72.25%', background: 'linear-gradient(0deg, rgb(24, 24, 24), transparent 50%)', zIndex: '1'}}></div>
+        <div className='sm:hidden md:block' style={{position: 'absolute', top: '0', left: '0', right: '0', height:'72.25%', background: 'linear-gradient(0deg, rgb(24, 24, 24), transparent 50%)', zIndex: '1'}}></div>
         <div className='relative pt-[56.25%]'>
           { trailer ?
             <ReactPlayer

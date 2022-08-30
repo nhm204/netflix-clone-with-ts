@@ -23,6 +23,7 @@ const Banner = ({ netflixOriginals }: Props) => {
   const [ isPlay, setIsPlay ] = useState<boolean>(true);
   const [ showReplayButton, setShowReplayButton ] = useState<boolean>(false);
   const [ showDesc, setShowDesc ] = useState<boolean>(true);
+  const [ showPoster, setShowPoster ] = useState<boolean>(false);
   const [ titleTransition, setTitleTransition ] = useState<boolean>(false);
 
 
@@ -47,7 +48,7 @@ const Banner = ({ netflixOriginals }: Props) => {
     setIsPlay(false);
     setShowDesc(true);
     setTitleTransition(false);
-    return (<Image src={`${baseUrl}${movie?.backdrop_path || movie?.poster_path}`} layout='fill' objectFit="cover" alt='banner' />)
+    setShowPoster(true);
   }
 
 
@@ -60,6 +61,7 @@ const Banner = ({ netflixOriginals }: Props) => {
   const handleReplay = useCallback(() => {
     setShowReplayButton(false);
     setIsPlay(true);
+    setShowPoster(false)
     setTimeout(() => setShowDesc(false), 5000);
     setTimeout(() => setTitleTransition(true), 8000);
   }, [setIsPlay, setShowReplayButton, setShowDesc, setTitleTransition]);
@@ -80,8 +82,9 @@ const Banner = ({ netflixOriginals }: Props) => {
             onEnded={handleEndVideo}
             poster={`https://image.tmdb.org/t/p/w500${movie?.poster_path || movie?.backdrop_path}`}
           /> :
-          <Image src={`${baseUrl}${movie?.backdrop_path || movie?.poster_path}`} layout='fill' objectFit="cover" alt='banner' /> 
+          <Image src={`${baseUrl}${movie?.backdrop_path || movie?.poster_path}`} layout='fill' objectFit="cover" alt='banner' priority /> 
         }
+        { showPoster && <Image className='transition animated-fadeIn' src={`${baseUrl}${movie?.backdrop_path || movie?.poster_path}`} layout='fill' objectFit="cover" alt='banner' priority /> }
       </div>
       <div className='flex items-end justify-between'>
         <div>
