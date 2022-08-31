@@ -18,12 +18,6 @@ const RegForm = () => {
     if (signup) {
       await signUp(data.email, data.password);
     }
-    if (error) {
-      router.reload();
-    }
-    if (!error) {
-      router.push('/signup') 
-    }
   }
 
   

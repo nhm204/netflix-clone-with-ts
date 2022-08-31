@@ -1,7 +1,7 @@
 import Head from 'next/head';
 import { useRecoilValue } from 'recoil';
 import { modalState, movieState } from '../atoms/modalAtom';
-import { Banner, Header, MovieList, Modal, HoverModal } from '../components';
+import { Banner, Header, MovieList, Modal } from '../components';
 import useAuth from '../hooks/useAuth';
 import { Movie } from '../typings';
 import requests from '../utils/requests';

@@ -20,7 +20,7 @@ const AuthContext = createContext<Auth>({
   logout: async () => {},
   error: null,
   loading: false,
-})
+});
 
 interface AuthProviderProps {
   children: React.ReactNode
@@ -38,7 +38,8 @@ export const AuthProvider = ({ children }: AuthProviderProps) => {
       if (user) {
         setUser(user);
         setLoading(false);
-      } else {
+      } 
+      else {
         setUser(null);
         setLoading(true);
         router.push('/register');
@@ -46,21 +47,31 @@ export const AuthProvider = ({ children }: AuthProviderProps) => {
       setInitialLoading(false);
   }), [auth]);
 
-  const signUp = async (email: string, password: string) => {
-    setLoading(true)
 
+  const signUp = async (email: string, password: string) => {
+    setLoading(true);
     await createUserWithEmailAndPassword(auth, email, password)
       .then(userCredential => {
         setUser(userCredential.user);
-        router.push('/');
+        router.push('/signup');
         setLoading(false);
       })
-      .catch(error => alert(error.message))
+      .catch(error => { 
+        alert(error.message);
+        alert(error.code)
+        if (error.code === 'auth/email-already-in-use') {
+          router.push('/login');
+        }
+        else {
+          router.reload();
+        }
+      })
       .finally(() => setLoading(false))
-  }
+  };
+
 
   const signIn = async (email: string, password: string) => {
-    setLoading(true)
+    setLoading(true);
     await signInWithEmailAndPassword(auth, email, password)
       .then(userCredential => {
         setUser(userCredential.user);
@@ -69,18 +80,18 @@ export const AuthProvider = ({ children }: AuthProviderProps) => {
       })
       .catch(error => alert(error.message))
       .finally(() => setLoading(false))
-  }
+  };
+
 
   const logout = async () => {
-    setLoading(true)
-
+    setLoading(true);
     signOut(auth)
       .then(() => {
         setUser(null);
       })
       .catch(error => alert(error.message))
       .finally(() => setLoading(false))
-  }
+  };
 
   const memorizedValue = useMemo(() => ({ user, signUp, signIn, error, loading, logout }), [user, loading, error]);
 
@@ -93,5 +104,5 @@ export const AuthProvider = ({ children }: AuthProviderProps) => {
 };
 
 export default function useAuth() {
-  return useContext(AuthContext)
+  return useContext(AuthContext);
 };
