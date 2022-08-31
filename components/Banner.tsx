@@ -40,7 +40,7 @@ const Banner = ({ netflixOriginals }: Props) => {
       }
     }
     fetchMovie();
-  }, [netflixOriginals, movie]);
+  }, [movie]);
  
 
   const handleEndVideo = () => {

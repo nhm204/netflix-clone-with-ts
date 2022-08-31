@@ -11,7 +11,7 @@ interface Props {
 }
 
 function Thumbnail({ movie }: Props) {
-  const [ showHoverModal, setShowHoverModal ] = useRecoilState(modalState);
+  const [ showModal, setShowModal ] = useRecoilState(modalState);
   const [ currentMovie, setCurrentMovie ] = useRecoilState(movieState);
 
   return (
@@ -20,7 +20,7 @@ function Thumbnail({ movie }: Props) {
         className='relative h-28 min-w-[180px] cursor-pointer transition duration-200 ease-out md:h-32 md:min-w-[230px] mx-[0.4vw] md:mx-[0.2vw] md:group-first:ml-0'
         onClick={() => {
           setCurrentMovie(movie);
-          setShowHoverModal(true);
+          setShowModal(true);
         }}
         // onMouseOver={() => {
         //   setCurrentMovie(movie);
@@ -30,7 +30,6 @@ function Thumbnail({ movie }: Props) {
         <span className='absolute left-2 bottom-1 text-sm font-semibold text-white z-10'>{movie.name || movie.title || movie.original_name}</span>
         <Image src={`https://image.tmdb.org/t/p/w500${movie.backdrop_path || movie.poster_path}`} className='rounded-sm object-cover md:rounded' layout="fill" alt={movie.name || movie.title || movie.original_name} />
       </div>
-      { showHoverModal && <Modal /> }
     </div>
   )
 };

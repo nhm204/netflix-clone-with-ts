@@ -94,7 +94,6 @@ const Modal = () => {
     <MuiModal
       open={showModal}
       onClose={handleClose}
-      onMouseLeave={handleClose}
       className='fixed !top-7 left-0 right-0 mb-4 z-50 mx-auto w-full max-w-4xl overflow-hidden overflow-y-scroll rounded-md scrollbar-hide'
     >
       <>
@@ -113,7 +112,7 @@ const Modal = () => {
               style={{ position: 'absolute', top: '0', left: '0', background: 'linear-gradient(0deg, rgb(24, 24, 24), transparent 50%)' }}
               playing
               loop
-              muted={muted}
+              muted={muted} 
               poster={`https://image.tmdb.org/t/p/w500${movie?.poster_path || movie?.backdrop_path}`}
             /> :      
             <Image src={`${baseUrl}${movie?.backdrop_path || movie?.poster_path}`} style={{background: 'linear-gradient(0deg, rgb(24, 24, 24), transparent 50%)'}} className='absolute top-0 left-0 object-cover' layout='fill' alt='' />
