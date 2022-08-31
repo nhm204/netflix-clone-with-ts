@@ -32,4 +32,32 @@
   .modal-btn {
     @apply flex h-9 w-9 md:h-11 md:w-11 items-center justify-center rounded-full border-2 border-[gray] bg-[#2a2a2a]/60 transition hover:border-white hover:bg-white/10;
   }
+
+  .modal-bg {
+    position: absolute;
+    top: 0; 
+    left: 0; 
+    right: 0;
+    height: 72.25%; 
+    background: linear-gradient(0deg, rgb(24, 24, 24), transparent 50%);
+    z-index: 1;
+  }
+}
+
+@media (min-width: 46.25em) and (max-width: 63.9375em) {
+  .modal-bg {
+    height: 48%;
+  }
+}
+
+@media (max-width: 46.1875em) {
+  .modal-bg {
+    height: 36.25%;
+  }
+}
+
+@media (max-width: 46.1875em) {
+  .modal-bg {
+    height: 37.25%;
+  }
 }
