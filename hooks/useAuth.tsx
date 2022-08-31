@@ -58,7 +58,6 @@ export const AuthProvider = ({ children }: AuthProviderProps) => {
       })
       .catch(error => { 
         alert(error.message);
-        alert(error.code)
         if (error.code === 'auth/email-already-in-use') {
           router.push('/login');
         }
