@@ -22,12 +22,8 @@ function Thumbnail({ movie }: Props) {
           setCurrentMovie(movie);
           setShowModal(true);
         }}
-        // onMouseOver={() => {
-        //   setCurrentMovie(movie);
-        //   setShowModal(true);
-        // }}
       >
-        <span className='absolute left-2 bottom-1 text-sm font-semibold text-white z-10'>{movie.name || movie.title || movie.original_name}</span>
+        <span className='absolute left-2 bottom-1 text-xs md:text-sm font-semibold text-white z-10'>{movie.name || movie.title || movie.original_name}</span>
         <Image src={`https://image.tmdb.org/t/p/w500${movie.backdrop_path || movie.poster_path}`} className='rounded-sm object-cover md:rounded' layout="fill" alt={movie.name || movie.title || movie.original_name} />
       </div>
     </div>

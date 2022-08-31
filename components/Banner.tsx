@@ -68,8 +68,8 @@ const Banner = ({ netflixOriginals }: Props) => {
 
 
   return (
-    <div className='flex flex-col space-y-2 pl-[4%] py-16 md:space-y-4 lg:h-[76vh] lg:justify-end lg:pb-0'>
-      <div className='absolute top-0 left-0 -z-10 md:h-[42vh] lg:h-[95vh] w-full'>
+    <div className='flex flex-col space-y-2 pl-[4%] py-16 md:space-y-4 h-[60vh] lg:h-[76vh] justify-end lg:pb-0'>
+      <div className='absolute top-0 left-0 -z-10 h-[70vh] lg:h-[95vh] w-full'>
         { trailer ? 
           <ReactPlayer
             url={`https://www.youtube.com/watch?v=${trailer}`}
@@ -88,10 +88,10 @@ const Banner = ({ netflixOriginals }: Props) => {
       </div>
       <div className='flex items-end justify-between'>
         <div>
-          <h1 className={`max-w-xs md:max-w-lg lg:max-w-2xl text-2xl font-bold md:text-4xl lg:text-7xl ${titleTransition && 'lg:mb-8'}`}>
+          <h1 className={`max-w-xs md:max-w-lg lg:max-w-2xl text-2xl font-bold md:text-4xl lg:text-7xl ${titleTransition && 'mb-2 md:mb-4 lg:mb-8'}`}>
             {movie?.title || movie?.name || movie?.original_name}
           </h1>
-          <p className={`max-w-xs text-xs text-shadow-md md:max-w-lg md:text-lg lg:max-w-2xl lg:text-lg lg:my-5 transition ${showDesc ? 'animate-fadeIn' : 'animate-fadeOut'} ${titleTransition && 'absolute top-0'}`}>
+          <p className={`max-w-xs text-xs text-shadow-md my-2 md:max-w-lg md:text-base md:my-2 lg:max-w-2xl lg:text-lg lg:my-5 transition ${showDesc ? 'animate-fadeIn' : 'animate-fadeOut'} ${titleTransition && 'absolute top-0'}`}>
             {movie?.overview}
           </p>
           <div className='flex space-x-3'>
@@ -112,14 +112,14 @@ const Banner = ({ netflixOriginals }: Props) => {
           </div>
         </div>
         { trailer && (
-          <div className='flex space-x-2 z-10 mr-8'>
+          <div className='flex space-x-2 z-10 mr-[4%]'>
             { showReplayButton && (
               <button className='modal-btn z-10' onClick={handleReplay}>
-                <BsArrowClockwise className='h-6 w-6' />
+                <BsArrowClockwise className='h-4 w-4 md:h-6 md:w-6' />
               </button>
             )}
             <button className='modal-btn z-10' onClick={() => setMuted(!muted)}>
-              { muted ? <VolumeOffIcon className='h-6 w-6' /> : <VolumeUpIcon className='h-6 w-6' /> }
+              { muted ? <VolumeOffIcon className='h-4 w-4 md:h-6 md:w-6' /> : <VolumeUpIcon className='h-4 w-4 md:h-6 md:w-6' /> }
             </button>
           </div>
         )}
