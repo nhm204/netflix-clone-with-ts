@@ -48,36 +48,37 @@ const Home: React.FC<Props> = (props) => {
   const movie = useRecoilValue(movieState);
   const list = useList(user?.uid);
 
-  // console.log(tvShows)
+  const netflixMovieId = netflixOriginals.map(movie => movie.id);
+
   if (loading) return null;
 
   return (
     <div className='relative h-screen bg-gradient-to-b from-gray-900/10 to-[#010511] lg:h-[140vh] w-full'>
       <Head>
         <title>{movie?.title || movie?.name || movie?.original_name || 'Home'} - Netflix</title>
-        <link rel="icon" href="/favicon.ico" />
+        <link rel='icon' href='/favicon.ico' />
       </Head>
       <Header />
 
       <main className='relative pb-24 lg:space-y-24'>
         <Banner netflixOriginals={animation} />
-        <section className="md:space-y-12">
-          { trendingNow && <MovieList title="Trending Now" movies={trendingNow} /> }
-          { topRated && <MovieList title="Top Rated" movies={topRated} /> }
-          { animation && <MovieList title="Animation" movies={animation} /> }
-          { list.length > 0 && <MovieList title="My List" movies={list} />}
-          { tvShows && <MovieList title="TV Shows" movies={tvShows} /> }
-          { netflixOriginals && <MovieList title="Only on Netflix" movies={netflixOriginals} /> }
-          { moviesLatest && <MovieList title="New Release" movies={moviesLatest} /> }
-          { tvPopular && <MovieList title="TV Popular" movies={tvPopular} /> }
-          { sciFi && <MovieList title="Sci-Fi Movies" movies={sciFi} /> }
-          { actionMovies && <MovieList title="Action Thrillers" movies={actionMovies} /> }
-          { comedyMovies && <MovieList title="Comedies" movies={comedyMovies} /> }
-          { misteryMovies && <MovieList title="Mistery Movies" movies={misteryMovies} /> }
-          { western && <MovieList title="Western Movies" movies={western} /> }
-          { horrorMovies && <MovieList title="Scary Movies" movies={horrorMovies} /> } 
-          { romanceMovies && <MovieList title="Romance Movies" movies={romanceMovies} /> }
-          { documentaries && <MovieList title="Documentaries" movies={documentaries} /> }
+        <section className='md:space-y-12'>
+          { trendingNow && <MovieList title='Trending Now' movies={trendingNow}  id={netflixMovieId} /> }
+          { topRated && <MovieList title='Top Rated' movies={topRated}  id={netflixMovieId} /> }
+          { animation && <MovieList title='Animation' movies={animation}  id={netflixMovieId} /> }
+          { list.length > 0 && <MovieList title='My List' movies={list}  id={netflixMovieId} />}
+          { tvShows && <MovieList title='TV Shows' movies={tvShows}  id={netflixMovieId} /> }
+          { netflixOriginals && <MovieList title='Only on Netflix' movies={netflixOriginals} id={netflixMovieId} /> }
+          { moviesLatest && <MovieList title='New Release' movies={moviesLatest}  id={netflixMovieId} /> }
+          { tvPopular && <MovieList title='TV Popular' movies={tvPopular}  id={netflixMovieId} /> }
+          { sciFi && <MovieList title='Sci-Fi Movies' movies={sciFi}  id={netflixMovieId} /> }
+          { actionMovies && <MovieList title='Action Thrillers' movies={actionMovies}  id={netflixMovieId} /> }
+          { comedyMovies && <MovieList title='Comedies' movies={comedyMovies}  id={netflixMovieId} /> }
+          { misteryMovies && <MovieList title='Mistery Movies' movies={misteryMovies}  id={netflixMovieId} /> }
+          { western && <MovieList title='Western Movies' movies={western}  id={netflixMovieId} /> }
+          { horrorMovies && <MovieList title='Scary Movies' movies={horrorMovies}  id={netflixMovieId} /> } 
+          { romanceMovies && <MovieList title='Romance Movies' movies={romanceMovies}  id={netflixMovieId} /> }
+          { documentaries && <MovieList title='Documentaries' movies={documentaries}  id={netflixMovieId} /> }
         </section>
       </main>
       { showModal && <Modal />}
