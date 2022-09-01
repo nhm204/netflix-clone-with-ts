@@ -8,11 +8,13 @@ import Modal from './Modal';
 
 interface Props {
   movie: Movie | DocumentData
+  id: number[]
 }
 
-function Thumbnail({ movie }: Props) {
+function Thumbnail({ movie, id }: Props) {
   const [ showModal, setShowModal ] = useRecoilState(modalState);
   const [ currentMovie, setCurrentMovie ] = useRecoilState(movieState);
+
 
   return (
     <div className='relative group'>
@@ -23,8 +25,9 @@ function Thumbnail({ movie }: Props) {
           setShowModal(true);
         }}
       >
+        { id.includes(movie.id) && <img src='static/netflix_icon.png' className='absolute top-2 left-[0.2rem] z-10 h-5 w-5' alt='netflix-logo' /> }
         <span className='absolute left-2 bottom-1 text-xs md:text-sm font-semibold text-white z-10'>{movie.name || movie.title || movie.original_name}</span>
-        <Image src={`https://image.tmdb.org/t/p/w500${movie.backdrop_path || movie.poster_path}`} className='rounded-sm object-cover md:rounded' layout="fill" alt={movie.name || movie.title || movie.original_name} />
+        <Image src={`https://image.tmdb.org/t/p/w500${movie.backdrop_path || movie.poster_path}`} className='rounded-sm object-cover md:rounded' layout='fill' alt={movie.name || movie.title || movie.original_name} />
       </div>
     </div>
   )

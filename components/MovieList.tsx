@@ -4,12 +4,14 @@ import { ChevronLeftIcon, ChevronRightIcon } from '@heroicons/react/outline';
 import Thumbnail from './Thumbnail';
 import { DocumentData } from 'firebase/firestore';
 
+
 interface Props {
   title: string
   movies: Movie[] | DocumentData[]
+  id: number[]
 }
 
-const MovieList = ({ title, movies }: Props) => {
+const MovieList = ({ title, movies, id }: Props) => {
   const rowRef = useRef<HTMLDivElement>(null);
   const [ isMoved, setIsMoved ] = useState<boolean>(false);
 
@@ -37,7 +39,7 @@ const MovieList = ({ title, movies }: Props) => {
         />
         <div ref={rowRef} className='flex items-center md:pl-2 overflow-auto scrollbar-hide z-10'>
           { movies?.map(movie => (
-            <Thumbnail key={movie.id} movie={movie} />
+            <Thumbnail key={movie.id} movie={movie} id={id} />
           ))}
         </div>
         <ChevronRightIcon 

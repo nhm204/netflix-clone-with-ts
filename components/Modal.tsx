@@ -19,6 +19,7 @@ const Modal = () => {
   const [ movie, setMovie ] = useRecoilState(movieState);
   const [ trailer, setTrailer ] = useState<string>('');
   const [ genres, setGenres ] = useState<Genre[]>([]);
+  const [ seasons, setSeasons ] = useState<number | null>(null);
   const [ muted, setMuted ] = useState<boolean>(true);
   const [ movies, setMovies ] = useState<DocumentData[] | Movie[]>([]);
   const [ addedToList, setAddedToList ] = useState<boolean>(false);
@@ -42,6 +43,14 @@ const Modal = () => {
         `https://api.themoviedb.org/3/${movie?.media_type === 'tv' ? 'tv' : 'movie'}/${movie?.id}?api_key=${process.env.NEXT_PUBLIC_API_KEY}&language=en-US&append_to_response=videos`
       ).then((response) => response.json());
 
+      const details = await fetch(
+        `https://api.themoviedb.org/3/${movie?.media_type === 'tv' ? 'tv' : 'movie'}/${movie?.id}?api_key=${process.env.NEXT_PUBLIC_API_KEY}&language=en-US`
+      ).then((response) => response.json());
+
+      const similar = await fetch(
+        `https://api.themoviedb.org/3/${movie?.media_type === 'tv' ? 'tv' : 'movie'}/${movie?.id}/similar?api_key=${process.env.NEXT_PUBLIC_API_KEY}&language=en-US`
+      ).then((response) => response.json());
+
       if (data?.videos) {
         const index = data.videos.results.findIndex((element: Element) => element.type === 'Trailer' || 'Teaser' || 'Clip' || 'Bloopers' || 'Featurette' || 'Behind the Scenes');
         setTrailer(data.videos?.results[index]?.key);
@@ -49,11 +58,14 @@ const Modal = () => {
       if (data?.genres) {
         setGenres(data.genres);
       }
+      if (details?.number_of_seasons) {
+        setSeasons(details.number_of_seasons);
+      }
     }
 
     fetchMovie();
   }, [movie]);
-
+  console.log(seasons)
 
   const handleClose = useCallback(() => {
     setShowModal(false);
@@ -116,8 +128,8 @@ const Modal = () => {
             /> :      
             <Image src={`${baseUrl}${movie?.backdrop_path || movie?.poster_path}`} style={{background: 'linear-gradient(0deg, rgb(24, 24, 24), transparent 50%)'}} className='absolute top-0 left-0 object-cover' layout='fill' alt='' />
           }
-          <h1 className='absolute bottom-16 md:bottom-28 px-4 md:px-12 text-lg md:text-6xl text-white text-shadow-md font-bold w-[75%] z-10'>{movie?.name || movie?.title || movie?.original_name}</h1>
-          <div className='absolute bottom-5 md:bottom-10 flex w-full items-center justify-between px-4 md:px-12'>
+          <h1 className='absolute bottom-28 px-12 text-lg md:text-6xl text-white text-shadow-md font-bold w-[70%] z-10'>{movie?.name || movie?.title || movie?.original_name}</h1>
+          <div className='absolute bottom-10 flex w-full items-center justify-between px-12'>
             <div className='flex space-x-2 z-10'>
               <button className='flex items-center gap-x-2 rounded bg-white px-8 text-lg font-bold text-black transition hover:bg-[#e6e6e6]'>
                 <FaPlay className='h-6 w-6 text-black' />
@@ -144,12 +156,17 @@ const Modal = () => {
               <p className='font-light'>
                 { movie?.release_date?.substr(0, 4) || movie?.first_air_date?.substr(0, 4) }
               </p>
+              { seasons && (
+                <p className='font-light'>
+                  { `${seasons} ${seasons > 1 ? 'seasons' : 'season'}`}
+                </p>
+              )}
               <div className='flex h-4 items-center justify-center rounded border border-white/40 px-1.5 text-xs'>
                 HD
               </div>
             </div>
-            <div className='flex flex-col gap-x-10 gap-y-6 font-light md:flex-row'>
-              <p className='lg:w-[70%] text-sm lg:text-base'>{movie?.overview}</p>
+            <div className='flex flex-col gap-x-10 gap-y-4 font-light md:flex-row'>
+              <p className='w-[80%] sm:text-sm lg:text-base'>{movie?.overview}</p>
               <div className='flex flex-col space-y-3 text-sm'>
                 <div>
                   <span className='text-[gray]'>Genres:</span>{' '}
