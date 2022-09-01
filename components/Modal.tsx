@@ -106,26 +106,25 @@ const Modal = () => {
     <MuiModal
       open={showModal}
       onClose={handleClose}
-      className='fixed !top-7 left-0 right-0 mb-4 z-50 mx-auto w-full max-w-4xl overflow-hidden overflow-y-scroll rounded-md scrollbar-hide'
+      className='fixed !top-7 lg:left-0 lg:right-0 mb-4 z-50 mx-auto w-full max-w-4xl overflow-hidden overflow-y-scroll rounded-md scrollbar-hide'
     >
       <>
         <Toaster position='bottom-center' />
         <button className='modal-btn absolute right-5 top-5 border-none !z-40 h-9 w-9 bg-[#181818] hover:bg-[#181818]' onClick={handleClose}>
           <XIcon className='h-6 w-6' />
         </button>
-
-        <div className='sm:hidden md:block' style={{position: 'absolute', top: '0', left: '0', right: '0', height:'72.25%', background: 'linear-gradient(0deg, rgb(24, 24, 24), transparent 50%)', zIndex: '1'}}></div>
         <div className='relative pt-[56.25%]'>
+          <div className='modal-bg'  />
           { trailer ?
             <ReactPlayer
-              url={`https://www.youtube.com/watch?v=${trailer}`}
-              width='100%'
-              height='100%'
-              style={{ position: 'absolute', top: '0', left: '0', background: 'linear-gradient(0deg, rgb(24, 24, 24), transparent 50%)' }}
-              playing
-              loop
-              muted={muted} 
-              poster={`https://image.tmdb.org/t/p/w500${movie?.poster_path || movie?.backdrop_path}`}
+            url={`https://www.youtube.com/watch?v=${trailer}`}
+            width='100%'
+            height='100%'
+            style={{ position: 'absolute', top: '0', left: '0', background: 'linear-gradient(0deg, rgb(24, 24, 24), transparent 50%)' }}
+            playing
+            loop
+            muted={muted} 
+            poster={`https://image.tmdb.org/t/p/w500${movie?.poster_path || movie?.backdrop_path}`}
             /> :      
             <Image src={`${baseUrl}${movie?.backdrop_path || movie?.poster_path}`} style={{background: 'linear-gradient(0deg, rgb(24, 24, 24), transparent 50%)'}} className='absolute top-0 left-0 object-cover' layout='fill' alt='' />
           }
@@ -148,7 +147,7 @@ const Modal = () => {
             </button>
           </div>
         </div>
-        <div className='flex space-x-16 rounded-b-md bg-[#181818] px-12 py-8'>
+        <div className='flex space-x-16 rounded-b-md bg-[#181818] px-4 py-8 md:px-12 md:py-10 lg:py-8'>
           <div className='space-y-6 text-lg'>
             <div className='flex items-center space-x-2 text-base'>
               <p className='font-semibold text-green-400'>
