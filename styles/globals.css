@@ -38,26 +38,8 @@
     top: 0; 
     left: 0; 
     right: 0;
-    height: 72.25%; 
+    height: 101%; 
     background: linear-gradient(0deg, rgb(24, 24, 24), transparent 50%);
     z-index: 1;
-  }
-}
-
-@media (min-width: 46.25em) and (max-width: 63.9375em) {
-  .modal-bg {
-    height: 48%;
-  }
-}
-
-@media (max-width: 46.1875em) {
-  .modal-bg {
-    height: 36.25%;
-  }
-}
-
-@media (max-width: 46.1875em) {
-  .modal-bg {
-    height: 37.25%;
   }
 }

@@ -94,15 +94,15 @@ const Modal = () => {
     <MuiModal
       open={showModal}
       onClose={handleClose}
-      className='fixed sm:!top-[10%] lg:!top-7 lg:left-0 lg:right-0 mb-4 z-50 mx-auto w-full max-w-4xl overflow-hidden overflow-y-scroll rounded-md scrollbar-hide'
+      className='fixed !top-7 lg:left-0 lg:right-0 mb-4 z-50 mx-auto w-full max-w-4xl overflow-hidden overflow-y-scroll rounded-md scrollbar-hide'
     >
       <>
         <Toaster position='bottom-center' />
         <button className='modal-btn absolute right-5 top-5 border-none !z-40 h-9 w-9 bg-[#181818] hover:bg-[#181818]' onClick={handleClose}>
           <XIcon className='h-6 w-6' />
         </button>
-        <div className='modal-bg'  />
         <div className='relative pt-[56.25%]'>
+          <div className='modal-bg'  />
           { trailer ?
             <ReactPlayer
             url={`https://www.youtube.com/watch?v=${trailer}`}
@@ -135,7 +135,7 @@ const Modal = () => {
             </button>
           </div>
         </div>
-        <div className='flex space-x-16 rounded-b-md bg-[#181818] px-4 py-6 md:px-12 md:py-10 lg:py-8'>
+        <div className='flex space-x-16 rounded-b-md bg-[#181818] px-4 py-8 md:px-12 md:py-10 lg:py-8'>
           <div className='space-y-6 text-lg'>
             <div className='flex items-center space-x-2 text-base'>
               <p className='font-semibold text-green-400'>
