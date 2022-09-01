@@ -88,7 +88,7 @@ const Banner = ({ netflixOriginals }: Props) => {
       </div>
       <div className='flex items-end justify-between'>
         <div>
-          <h1 className={`max-w-xs md:max-w-lg lg:max-w-2xl text-2xl font-bold md:text-4xl lg:text-7xl ${titleTransition && 'mb-2 md:mb-4 lg:mb-8'}`}>
+          <h1 className={`max-w-xs md:max-w-lg lg:max-w-2xl text-2xl font-bold md:text-4xl lg:text-7xl ${titleTransition && 'mb-2 md:mb-4 lg:mb-8 lg:text-[85px]'}`}>
             {movie?.title || movie?.name || movie?.original_name}
           </h1>
           <p className={`max-w-xs text-xs text-shadow-md my-2 md:max-w-lg md:text-base md:my-2 lg:max-w-2xl lg:text-lg lg:my-5 transition ${showDesc ? 'animate-fadeIn' : 'animate-fadeOut'} ${titleTransition && 'absolute top-0'}`}>
