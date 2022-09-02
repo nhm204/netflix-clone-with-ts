@@ -3,8 +3,6 @@ import Image from 'next/image';
 import { useRecoilState } from 'recoil';
 import { modalState, movieState } from '../atoms/modalAtom';
 import { DocumentData } from 'firebase/firestore';
-import { useState } from 'react';
-import Modal from './Modal';
 
 interface Props {
   movie: Movie | DocumentData
