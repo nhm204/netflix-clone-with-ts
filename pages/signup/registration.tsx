@@ -14,7 +14,7 @@ const Registration = () => {
       </Head>
       <header className='fixed top-0 left-0 right-0 h-[90px] bg-none border-b py-[3%] lg:py-[3%]' >
         <img src='https://rb.gy/ulxxee' className='w-[120px] cursor-pointer object-contain md:left-10 md:top-6 md:w-[160px]' alt='logo' />
-        <button className='text-[#333] font-semibold md:text-lg' onClick={() => router.push('/login')}>Sign In</button>
+        <button className='text-[#333] font-semibold md:text-lg hover:underline' onClick={() => router.push('/login')}>Sign In</button>
       </header>
       <div className='flex flex-col justify-center items-center text-[#333] w-[50%] lg:w-[25%] mt-[90px]'>
         <img src='https://rb.gy/uhhakw' className='w-[260px]' alt='illustration' />
