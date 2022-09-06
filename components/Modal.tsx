@@ -61,11 +61,12 @@ const Modal = () => {
       if (details?.number_of_seasons) {
         setSeasons(details.number_of_seasons);
       }
+      
     }
 
     fetchMovie();
   }, [movie]);
-  console.log(seasons)
+
 
   const handleClose = useCallback(() => {
     setShowModal(false);
@@ -156,6 +157,9 @@ const Modal = () => {
               <p className='font-light'>
                 { movie?.release_date?.substr(0, 4) || movie?.first_air_date?.substr(0, 4) }
               </p>
+              <div className='flex h-[1.2rem] items-center justify-center border border-white/40 px-1.5'>
+                { !movie?.adult ? 'ALL' : '16+' }
+              </div>
               { seasons && (
                 <p className='font-light'>
                   { `${seasons} ${seasons > 1 ? 'seasons' : 'season'}`}
