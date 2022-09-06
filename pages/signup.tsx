@@ -17,7 +17,7 @@ const SignUp = () => {
       </Head>
       <header className='fixed top-0 left-0 right-0 h-[90px] bg-none border-b py-[3%] lg:py-[3%]' >
         <img src='https://rb.gy/ulxxee' className='w-[120px] cursor-pointer object-contain md:left-10 md:top-6 md:w-[160px]' alt='logo' />
-        <button className='text-[#333] font-semibold md:text-lg' onClick={logout}>Sign Out</button>
+        <button className='text-[#333] font-semibold md:text-lg hover:underline' onClick={logout}>Sign Out</button>
       </header>
       <div className='flex flex-col justify-center items-center text-[#333] w-[50%] lg:w-[25%]'>
         <img src='https://rb.gy/dld41a' className='w-[50px]' alt='illustration' />
