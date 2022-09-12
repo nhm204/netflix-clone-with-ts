@@ -9,6 +9,7 @@ import requests from '../utils/requests';
 import Plans from './signup/planform';
 import { getProducts, Product } from '@stripe/firestore-stripe-payments';
 import payments from '../lib/stripe';
+import { useRouter } from 'next/router';
 
 
 interface Props {
@@ -27,7 +28,7 @@ interface Props {
   sciFi: Movie[]
   western: Movie[]
   animation: Movie[]
-  products: Product[]
+  // products: Product[]
 }
 
 const Home: React.FC<Props> = (props) => {
@@ -47,20 +48,22 @@ const Home: React.FC<Props> = (props) => {
     sciFi,
     western,
     animation,
-    products 
+    // products 
   } = props;
   const { user, loading } = useAuth();
   const showModal = useRecoilValue(modalState);
   const movie = useRecoilValue(movieState);
   const list = useList(user?.uid);
   const subscription = false
-  console.log(payments)
+
+  const router = useRouter();
 
   const netflixMovieId = netflixOriginals.map(movie => movie.id);
 
   if (loading || subscription === null) return null;
 
-  if (!subscription) return <Plans products={products} />;
+  if (!subscription) router.push('/signup/planform');
+  
 
   return (
     <div className='relative h-screen bg-gradient-to-b from-gray-900/10 to-[#010511] lg:h-[140vh] w-full'>
@@ -100,12 +103,12 @@ export default Home;
 
 
 export const getServerSideProps = async () => {
-  const products = await getProducts(payments, {
-    includePrices: true,
-    activeOnly: true,
-  })
-    .then((res) => res)
-    .catch((error) => console.log(error.message))
+  // const products = await getProducts(payments, {
+  //   includePrices: true,
+  //   activeOnly: true,
+  // })
+  //   .then((res) => res)
+  //   .catch((error) => console.log(error.message))
  
   const [
     netflixOriginals,
@@ -158,7 +161,7 @@ export const getServerSideProps = async () => {
       sciFi: sciFi.results || null,
       western: western.results || null,
       animation: animation.results || null,
-      products
+      // products
     }
   }
 }
