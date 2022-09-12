@@ -1,9 +1,11 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import Head from 'next/head';
 import Link from 'next/link';
 import { CheckIcon } from '@heroicons/react/outline';
 import useAuth from '../../hooks/useAuth';
-import { Product } from '@stripe/firestore-stripe-payments';
+import { getProducts, Product } from '@stripe/firestore-stripe-payments';
+import payments from '../../lib/stripe';
+import { useRouter } from 'next/router';
 
 
 interface Props {
@@ -13,6 +15,14 @@ interface Props {
 
 const Plans = ({ products }: Props) => {
   const { logout, user } = useAuth();
+  const router = useRouter();
+  console.log(products)
+
+  // useEffect(() => {
+  //   router.replace('/signup/planform');
+  // }, []);
+  // console.log(products)
+  
 
   return (
     <div className='h-screen w-screen bg-white'>
@@ -65,3 +75,16 @@ const Plans = ({ products }: Props) => {
 };
 
 export default Plans;
+
+export const getServerSideProps = async () => {
+  const products = await getProducts(payments, {
+    includePrices: true,
+    activeOnly: true,
+  })
+    .then((res) => res)
+    .catch((error) => console.log(error.message))
+
+  return {
+    props: { products }
+  }
+}
