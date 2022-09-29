@@ -22,7 +22,13 @@ const Registration = () => {
         <h1 className='text-center text-3xl font-bold'>Finish setting up your account</h1>
         <span className='text-center text-lg w-[70%] mt-4 leading-6 lg:w-[80%]'>Netflix is personalized for you.</span>
         <span className='text-center text-lg w-[70%] leading-6 lg:w-[80%]'>Create a password to watch on any device at any time.</span>
-        <button className='w-[70%] rounded bg-[#E50914] py-3 text-2xl text-white mt-5 lg:w-[90%] hover:bg-[#F6121D]' onClick={() => router.push('/signup/regform')} type='submit'>Next</button>
+        <button 
+          className='w-[70%] rounded bg-[#E50914] py-3 text-2xl text-white mt-5 lg:w-[90%] hover:bg-[#F6121D]' 
+          onClick={() => router.push('/signup/regform')} 
+          type='submit'
+        >
+          Next
+        </button>
       </div>
     </div>
   )
