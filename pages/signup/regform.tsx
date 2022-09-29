@@ -98,7 +98,11 @@ const RegForm = () => {
               </p>
             )}
           </label>
-          <button className='w-full rounded bg-[#E50914] py-3 text-2xl text-white mt-14 hover:bg-[#F6121D]' onClick={() => setSignup(true)} type='submit'>
+          <button 
+            className='w-full rounded bg-[#E50914] py-3 text-2xl text-white mt-14 hover:bg-[#F6121D]' 
+            onClick={() => setSignup(true)} 
+            type='submit'
+          >
             Next
           </button>
         </form>
