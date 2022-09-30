@@ -47,9 +47,9 @@ const Modal = () => {
         `https://api.themoviedb.org/3/${movie?.media_type === 'tv' ? 'tv' : 'movie'}/${movie?.id}?api_key=${process.env.NEXT_PUBLIC_API_KEY}&language=en-US`
       ).then((response) => response.json());
 
-      const similar = await fetch(
-        `https://api.themoviedb.org/3/${movie?.media_type === 'tv' ? 'tv' : 'movie'}/${movie?.id}/similar?api_key=${process.env.NEXT_PUBLIC_API_KEY}&language=en-US`
-      ).then((response) => response.json());
+      // const similar = await fetch(
+      //   `https://api.themoviedb.org/3/${movie?.media_type === 'tv' ? 'tv' : 'movie'}/${movie?.id}/similar?api_key=${process.env.NEXT_PUBLIC_API_KEY}&language=en-US`
+      // ).then((response) => response.json());
 
       if (data?.videos) {
         const index = data.videos.results.findIndex((element: Element) => element.type === 'Trailer' || 'Teaser' || 'Clip' || 'Bloopers' || 'Featurette' || 'Behind the Scenes');
@@ -61,9 +61,7 @@ const Modal = () => {
       if (details?.number_of_seasons) {
         setSeasons(details.number_of_seasons);
       }
-      
     }
-
     fetchMovie();
   }, [movie]);
 
@@ -118,16 +116,22 @@ const Modal = () => {
           <div className='modal-bg'  />
           { trailer ?
             <ReactPlayer
-            url={`https://www.youtube.com/watch?v=${trailer}`}
-            width='100%'
-            height='100%'
-            style={{ position: 'absolute', top: '0', left: '0', background: 'linear-gradient(0deg, rgb(24, 24, 24), transparent 50%)' }}
-            playing
-            loop
-            muted={muted} 
-            poster={`https://image.tmdb.org/t/p/w500${movie?.poster_path || movie?.backdrop_path}`}
+              url={`https://www.youtube.com/watch?v=${trailer}`}
+              width='100%'
+              height='100%'
+              style={{ position: 'absolute', top: '0', left: '0', background: 'linear-gradient(0deg, rgb(24, 24, 24), transparent 50%)' }}
+              playing
+              loop
+              muted={muted} 
+              poster={`https://image.tmdb.org/t/p/w500${movie?.poster_path || movie?.backdrop_path}`}
             /> :      
-            <Image src={`${baseUrl}${movie?.backdrop_path || movie?.poster_path}`} style={{background: 'linear-gradient(0deg, rgb(24, 24, 24), transparent 50%)'}} className='absolute top-0 left-0 object-cover' layout='fill' alt='' />
+            <Image 
+              src={`${baseUrl}${movie?.backdrop_path || movie?.poster_path}`} 
+              style={{background: 'linear-gradient(0deg, rgb(24, 24, 24), transparent 50%)'}} 
+              className='absolute top-0 left-0 object-cover' 
+              layout='fill' 
+              alt='Poster' 
+            />
           }
           <h1 className='absolute bottom-28 px-12 text-lg md:text-6xl text-white text-shadow-md font-bold w-[70%] z-10'>{movie?.name || movie?.title || movie?.original_name}</h1>
           <div className='absolute bottom-10 flex w-full items-center justify-between px-12'>

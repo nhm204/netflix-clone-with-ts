@@ -31,21 +31,14 @@ const MovieList = ({ title, movies, id }: Props) => {
         {title}
       </h2>
       <div className={`group relative md:-ml-2 ${!isMoved && 'pl-[4%]'}`}>
-        <div className={`absolute top-0 bottom-0 left-0 h-28 w-[3.6%] opacity-0 bg-black/60 z-40 md:h-32 group-hover:opacity-100 ${ !isMoved && 'hidden' }`} />
-        <ChevronLeftIcon 
-          onClick={() => handleClick('left')}
-          className={`absolute top-0 bottom-0 left-2 z-40 h-full w-10 cursor-pointer opacity-0 py-auto transition hover:scale-125 group-hover:opacity-100
-            ${ !isMoved && 'hidden' }`}
-        />
+        <div className={`absolute top-0 bottom-0 left-0 h-28 w-[3.6%] opacity-0 bg-black/60 z-40 md:h-32 group-hover:opacity-100 ${!isMoved && 'hidden'}`} />
+        <ChevronLeftIcon onClick={() => handleClick('left')} className={`absolute top-0 bottom-0 left-2 z-40 h-full w-10 cursor-pointer opacity-0 py-auto transition hover:scale-125 group-hover:opacity-100 ${!isMoved && 'hidden'}`} />
         <div ref={rowRef} className='flex items-center md:pl-2 overflow-auto scrollbar-hide z-10'>
           { movies?.map(movie => (
             <Thumbnail key={movie.id} movie={movie} id={id} />
           ))}
         </div>
-        <ChevronRightIcon 
-          onClick={() => handleClick('right')}
-          className='arrow absolute top-0 bottom-0 right-1 z-40 h-full w-10 cursor-pointer opacity-0 py-auto transition hover:scale-125 group-hover:opacity-100' 
-        />
+        <ChevronRightIcon onClick={() => handleClick('right')} className='arrow absolute top-0 bottom-0 right-1 z-40 h-full w-10 cursor-pointer opacity-0 py-auto transition hover:scale-125 group-hover:opacity-100' />
         <div className='absolute top-0 bottom-0 right-0 h-28 w-[3.5%] opacity-0 bg-black/60 md:h-32 group-hover:opacity-100' />
       </div>
     </div>

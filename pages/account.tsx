@@ -1,9 +1,9 @@
-import React from 'react'
+import React from 'react';
 
-const account = () => {
+const Account = () => {
   return (
-    <div>account</div>
+    <div>Account</div>
   )
-}
+};
 
-export default account
+export default Account;
