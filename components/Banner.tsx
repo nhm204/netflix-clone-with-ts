@@ -82,9 +82,24 @@ const Banner = ({ netflixOriginals }: Props) => {
             onEnded={handleEndVideo}
             poster={`https://image.tmdb.org/t/p/w500${movie?.poster_path || movie?.backdrop_path}`}
           /> :
-          <Image src={`${baseUrl}${movie?.backdrop_path || movie?.poster_path}`} layout='fill' objectFit="cover" alt='banner' priority /> 
+          <Image 
+            src={`${baseUrl}${movie?.backdrop_path || movie?.poster_path}`} 
+            layout='fill' 
+            objectFit="cover" 
+            alt='banner' 
+            priority 
+          /> 
         }
-        { showPoster && <Image className='transition animated-fadeIn' src={`${baseUrl}${movie?.backdrop_path || movie?.poster_path}`} layout='fill' objectFit="cover" alt='banner' priority /> }
+        { showPoster && 
+          <Image 
+            className='transition animated-fadeIn' 
+            src={`${baseUrl}${movie?.backdrop_path || movie?.poster_path}`} 
+            layout='fill' 
+            objectFit="cover" 
+            alt='banner' 
+            priority 
+          /> 
+        }
       </div>
       <div className='flex items-end justify-between'>
         <div>

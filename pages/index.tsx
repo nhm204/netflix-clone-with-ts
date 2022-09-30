@@ -10,6 +10,7 @@ import Plans from './signup/planform';
 import { getProducts, Product } from '@stripe/firestore-stripe-payments';
 import payments from '../lib/stripe';
 import { useRouter } from 'next/router';
+import useSubscription from '../hooks/useSubscription';
 
 
 interface Props {
@@ -28,7 +29,6 @@ interface Props {
   sciFi: Movie[]
   western: Movie[]
   animation: Movie[]
-  // products: Product[]
 }
 
 const Home: React.FC<Props> = (props) => {
@@ -47,14 +47,13 @@ const Home: React.FC<Props> = (props) => {
     tvShows, 
     sciFi,
     western,
-    animation,
-    // products 
+    animation
   } = props;
-  const { user, loading } = useAuth();
+  const { loading, user } = useAuth();
   const showModal = useRecoilValue(modalState);
   const movie = useRecoilValue(movieState);
   const list = useList(user?.uid);
-  const subscription = false
+  const subscription = useSubscription(user);
 
   const router = useRouter();
 
@@ -103,13 +102,6 @@ export default Home;
 
 
 export const getServerSideProps = async () => {
-  // const products = await getProducts(payments, {
-  //   includePrices: true,
-  //   activeOnly: true,
-  // })
-  //   .then((res) => res)
-  //   .catch((error) => console.log(error.message))
- 
   const [
     netflixOriginals,
     tvShows,
@@ -161,7 +153,6 @@ export const getServerSideProps = async () => {
       sciFi: sciFi.results || null,
       western: western.results || null,
       animation: animation.results || null,
-      // products
     }
   }
-}
+};

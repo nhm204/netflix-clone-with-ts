@@ -28,9 +28,19 @@ const Register = () => {
         <title>Netflix Vietnam - Watch TV Shows & Movies Online</title>
         <link rel='icon' href='/favicon.ico' />
       </Head>
-      <Image src='https://rb.gy/fafrpf' layout='fill' className='-z-10 !hidden opacity-60 sm:!inline' objectFit='cover' alt='background' />
+      <Image 
+        src='https://rb.gy/fafrpf' 
+        layout='fill' 
+        className='-z-10 !hidden opacity-60 sm:!inline' 
+        objectFit='cover' 
+        alt='background' 
+      />
       <header style={{ backgroundImage: 'linear-gradient(to bottom, rgba(0, 0, 0, 0.5) 0%, rgba(0, 0, 0, 0) 100%)' }} className='fixed top-0 left-0 right-0 h-[100px]' >
-        <img src='https://rb.gy/ulxxee' className='left-4 top-4 w-[120px] cursor-pointer object-contain md:left-10 md:top-6 md:w-[170px] md:h-[170px]' alt='logo' />
+        <img 
+          src='https://rb.gy/ulxxee' 
+          className='left-4 top-4 w-[120px] cursor-pointer object-contain md:left-10 md:top-6 md:w-[170px] md:h-[170px]' 
+          alt='logo' 
+        />
         <button className='w-20 h-8 md:w-24 md:h-9 rounded bg-[#E50914] text-center outline-none hover:bg-[#F6121D]' onClick={() => router.push('/login')}>Sign In</button>
       </header>
       <div className='flex flex-col items-center w-[80%] lg:w-[50%] z-10'>
@@ -61,7 +71,11 @@ const Register = () => {
               {errors.email?.message}
             </p>
           )}
-          <button type='submit' onClick={() => router.push('/signup/registration')} className='w-[50%] mt-3 md:mt-0 md:h-full flex justify-center items-center rounded-sm bg-[#E50914] py-3 text-sm md:text-xl lg:text-3xl hover:bg-[#F6121D]'>
+          <button 
+            type='submit' 
+            onClick={() => router.push('/signup/registration')} 
+            className='w-[50%] mt-3 md:mt-0 md:h-full flex justify-center items-center rounded-sm bg-[#E50914] py-3 text-sm md:text-xl lg:text-3xl hover:bg-[#F6121D]'
+          >
             Get Started
             <BsChevronRight className='h-3 md:ml-3 md:h-4 lg:h-6' />
           </button>
@@ -69,6 +83,6 @@ const Register = () => {
       </div>
     </div>
   )
-}
+};
 
 export default Register;

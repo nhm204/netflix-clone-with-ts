@@ -4,8 +4,8 @@ import Link from 'next/link';
 import { CheckIcon } from '@heroicons/react/outline';
 import useAuth from '../../hooks/useAuth';
 import { getProducts, Product } from '@stripe/firestore-stripe-payments';
-import payments from '../../lib/stripe';
-import { Table } from '../../components';
+import payments, { loadCheckout } from '../../lib/stripe';
+import { Loader, Table } from '../../components';
 
 
 interface Props {
@@ -15,8 +15,16 @@ interface Props {
 const Plans = ({ products }: Props) => {
   const { logout, user } = useAuth();
   const [ selectedPlan, setSelectedPlan ] = useState<Product | null>(products[2]);
+  const [ isBillingLoading, setBillingLoading ] = useState<boolean>(false)
 
   console.log(products)
+
+  const subscribeToPlan = () => {
+    if (!user) return;
+
+    loadCheckout(selectedPlan?.prices[0].id!);
+    setBillingLoading(true);
+  }
   
 
   return (
@@ -27,7 +35,11 @@ const Plans = ({ products }: Props) => {
       </Head>
       <header className='relative top-0 left-0 right-0 h-[90px] bg-none border-b py-[3%] lg:py-[3%]' >
         <Link href='/'>
-          <img src='https://rb.gy/ulxxee' className='w-[120px] cursor-pointer object-contain md:left-10 md:top-6 md:w-[160px]' alt='logo' />
+          <img 
+            src='https://rb.gy/ulxxee' 
+            className='w-[120px] cursor-pointer object-contain md:left-10 md:top-6 md:w-[160px]' 
+            alt='logo' 
+          />
         </Link>
         <button className='text-[#333] font-semibold md:text-lg hover:underline' onClick={logout}>Sign Out</button>
       </header>
@@ -69,8 +81,17 @@ const Plans = ({ products }: Props) => {
 
           <Table products={products} selectedPlan={selectedPlan} />
 
-          <button className='w-11/12 md:w-[420px] mx-auto rounded bg-[#E50914] py-3 md:py-4 text-2xl text-white !mt-14 hover:bg-[#F6121D]' type='submit'>
-            Next
+          <button 
+            disabled={!selectedPlan || isBillingLoading}
+            className={`w-11/12 md:w-[420px] mx-auto rounded bg-[#E50914] py-3 md:py-4 text-2xl text-white !mt-14 hover:bg-[#F6121D] ${isBillingLoading && 'opacity-60'}`} 
+            type='submit'
+            onClick={subscribeToPlan}
+          >
+            { isBillingLoading ? (
+              <Loader color="dark:fill-gray-300" />
+            ) : (
+              'Next'
+            )}
           </button>
         </div>
       </main>
@@ -91,4 +112,4 @@ export const getServerSideProps = async () => {
   return {
     props: { products }
   }
-}
+};

@@ -28,7 +28,11 @@ const RegForm = () => {
         <link rel='icon' href='/favicon.ico' />
       </Head>
       <header className='fixed top-0 left-0 right-0 h-[90px] bg-none border-b py-[3%] lg:py-[3%]' >
-        <img src='https://rb.gy/ulxxee' className='w-[120px] cursor-pointer object-contain md:left-10 md:top-6 md:w-[160px]' alt='logo' />
+        <img 
+          src='https://rb.gy/ulxxee' 
+          className='w-[120px] cursor-pointer object-contain md:left-10 md:top-6 md:w-[160px]' 
+          alt='logo' 
+        />
         <button className='text-[#333] font-semibold md:text-lg hover:underline' onClick={() => router.push('/login')}>Sign In</button>
       </header>
       <div className='flex flex-col text-[#333] w-[50%] lg:w-[30%] mt-[100px]'>
@@ -38,7 +42,7 @@ const RegForm = () => {
         <span className='text-lg mb-4 lg:w-[90%]'>We hate paperwork, too.</span>
         <form onSubmit={handleSubmit(onSubmit)} className='w-full'>
           <label className='group relative inline-block w-full'>
-            <span className={ emailValue.length > 0 ? `absolute left-3 top-1.5 text-black text-[11px] group-focus-within:text-[#8c8c8c]` : 'hidden'}>Email</span>
+            <span className={emailValue.length > 0 ? `absolute left-3 top-1.5 text-black text-[11px] group-focus-within:text-[#8c8c8c]` : 'hidden'}>Email</span>
             <input
               type='text'
               placeholder='Email'
@@ -109,6 +113,6 @@ const RegForm = () => {
       </div>
     </div>
   )
-}
+};
 
 export default RegForm;
