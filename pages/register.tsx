@@ -31,14 +31,14 @@ const Register = () => {
       <Image 
         src='https://rb.gy/fafrpf' 
         layout='fill' 
-        className='-z-10 !hidden opacity-60 sm:!inline' 
+        className='-z-10 !hidden opacity-60 sm:!inline select-none' 
         objectFit='cover' 
         alt='background' 
       />
       <header style={{ backgroundImage: 'linear-gradient(to bottom, rgba(0, 0, 0, 0.5) 0%, rgba(0, 0, 0, 0) 100%)' }} className='fixed top-0 left-0 right-0 h-[100px]' >
         <img 
           src='https://rb.gy/ulxxee' 
-          className='left-4 top-4 w-[120px] cursor-pointer object-contain md:left-10 md:top-6 md:w-[170px] md:h-[170px]' 
+          className='left-4 top-4 w-[120px] cursor-pointer object-contain md:left-10 md:top-6 md:w-[170px] md:h-[170px] select-none' 
           alt='logo' 
         />
         <button className='w-20 h-8 md:w-24 md:h-9 rounded bg-[#E50914] text-center outline-none hover:bg-[#F6121D]' onClick={() => router.push('/login')}>Sign In</button>

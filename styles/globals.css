@@ -58,4 +58,8 @@
   .table-data {
     @apply w-[calc(100%/3)] p-2.5 font-bold text-center md:w-[calc(60%/3)] md:p-3.5;
   }
+
+  .membership-link {
+    @apply cursor-pointer text-[#0073e6] hover:underline;
+  }
 }
