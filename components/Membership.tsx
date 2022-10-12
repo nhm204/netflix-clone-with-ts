@@ -26,7 +26,7 @@ function Membership() {
         <h4 className='text-lg text-[gray]'>Membership &amp; Billing</h4>
         <button
           disabled={isBillingLoading || !subscription}
-          className='h-10 w-3/5 whitespace-nowrap bg-gray-300 py-2 text-sm font-medium text-black shadow-md hover:bg-gray-200 md:w-4/5'
+          className='h-9 w-3/5 whitespace-nowrap bg-[#e6e6e6] py-2 text-sm font-medium rounded-sm shadow-[0_1px_0px_0px_rgba(0,0,0,0.2)] text-black shadow-md hover:bg-[#eaeaea] md:w-4/5'
           onClick={manageSubscription}
         >
           { isBillingLoading ? (<Loader color='dark:fill-[#e50914]' />) : ('Cancel Membership') }
@@ -47,7 +47,7 @@ function Membership() {
 
         <div className='flex flex-col justify-between pt-4 pb-4 md:flex-row md:pb-0'>
           <div>
-            <p className='text-[#555] font-medium'>
+            <p className='text-[#333] font-semibold'>
               { subscription?.cancel_at_period_end ? 'Your membership will end on ' : 'Your next billing date is ' }
               { subscription?.current_period_end }
             </p>
