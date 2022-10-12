@@ -34,7 +34,7 @@ function Membership() {
       </div>
 
       <div className='col-span-3'>
-        <div className='flex flex-col justify-between border-b border-white/10 py-4 md:flex-row'>
+        <div className='flex flex-col justify-between border-b border-[#e6e6e6] py-4 md:flex-row'>
           <div>
             <p className='font-bold text-[#333]'>{user?.email}</p>
             <p className='text-[#737373]'>Password: ********</p>
