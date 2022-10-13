@@ -29,6 +29,16 @@
     @apply w-full rounded bg-[#333333] px-5 h-[50px] placeholder-[gray] outline-none focus:bg-[#454545];
   }
 
+  .plan-box {
+    @apply relative mx-1.5 mt-4 flex text-white h-20 w-[calc(100%/3)] cursor-default items-center justify-center rounded-sm bg-[#e50914] font-semibold shadow md:h-32 lg:mx-8;
+  }
+
+  .membership-link {
+    @apply cursor-pointer text-[#0073e6] hover:underline;
+  }
+
+
+  /* Modal */
   .modal-btn {
     @apply flex h-9 w-9 md:h-11 md:w-11 items-center justify-center rounded-full border-2 border-[gray] bg-[#2a2a2a]/60 transition hover:border-white hover:bg-white/10;
   }
@@ -43,10 +53,8 @@
     z-index: 1;
   }
 
-  .plan-box {
-    @apply relative mx-1.5 mt-4 flex text-white h-20 w-[calc(100%/3)] cursor-default items-center justify-center rounded-sm bg-[#e50914] font-semibold shadow md:h-32 lg:mx-8;
-  }
-
+  
+  /* Table */
   .table-row {
     @apply !flex flex-wrap items-center font-medium;
   }
@@ -59,7 +67,21 @@
     @apply w-[calc(100%/3)] p-2.5 font-bold text-center md:w-[calc(60%/3)] md:p-3.5;
   }
 
-  .membership-link {
-    @apply cursor-pointer text-[#0073e6] hover:underline;
+
+  /* Header Menu */
+  .menu {
+    @apply md:hidden;
+  }
+
+  .menu .MuiPaper-root {
+    @apply !absolute !left-[3%] !top-14 !rounded-none !border !border-[gray] !bg-black !text-white;
+  }
+
+  .menu .MuiList-root {
+    @apply !p-0;
+  }
+
+  .menu .MuiMenuItem-root {
+    @apply !block !w-72 !py-3.5 !text-center !text-sm !font-light !text-[#b3b3b3] !transition !duration-200 first:cursor-default first:!font-semibold first:!text-white hover:!bg-[#11100F];
   }
 }
